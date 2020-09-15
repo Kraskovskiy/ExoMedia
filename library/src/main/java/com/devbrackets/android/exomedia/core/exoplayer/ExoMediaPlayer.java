@@ -169,7 +169,7 @@ public class ExoMediaPlayer extends Player.DefaultEventListener {
         trackSelector = new DefaultTrackSelector(adaptiveTrackSelectionFactory);
 
         LoadControl loadControl = ExoMedia.Data.loadControl != null ? ExoMedia.Data.loadControl : new DefaultLoadControl();
-        player = ExoPlayerFactory.newInstance(renderers.toArray(new Renderer[renderers.size()]), trackSelector, loadControl);
+        player = ExoPlayerFactory.newInstance(context, renderers.toArray(new Renderer[renderers.size()]), trackSelector, loadControl);
         player.addListener(this);
         analyticsCollector = new AnalyticsCollector.Factory().createAnalyticsCollector(player, Clock.DEFAULT);
         player.addListener(analyticsCollector);
@@ -463,6 +463,7 @@ public class ExoMediaPlayer extends Player.DefaultEventListener {
 
     /**
      * Return true if at least one renderer for the given type is enabled
+     *
      * @param type The renderer type
      * @return true if at least one renderer for the given type is enabled
      */
